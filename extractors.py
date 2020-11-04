@@ -190,7 +190,7 @@ def get_organization(internal_filename, year):
         return "comites" if "Comit" in internal_filename else "candidatos"
     elif year == 2012:
         return internal_filename.split("_")[1]
-    elif "2018" in year:
+    elif "2018" in year or "2020" in year:
         cand_or_party = (
             "candidatos" if "candidatos" in internal_filename else "partidos"
         )
@@ -683,7 +683,7 @@ class PrestacaoContasExtractor(Extractor):
             # 2014
             header_year = year
             year = 2014
-        elif isinstance(year, str) and "2018" in year:
+        elif isinstance(year, str) and ("2018" in year or "2020" in year):
             header_year = "2018"
         else:
             header_year = str(year)
