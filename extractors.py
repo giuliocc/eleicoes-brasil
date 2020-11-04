@@ -622,6 +622,8 @@ class PrestacaoContasExtractor(Extractor):
         2016,
         "2018-orgaos",
         "2018-candidatos",
+        "2020-orgaos",
+        "2020-candidatos",
     )
 
     def filename(self, year):
@@ -638,6 +640,8 @@ class PrestacaoContasExtractor(Extractor):
             "2016-suplementar": "contas_final_sup_2016",
             "2018-orgaos": "de_contas_eleitorais_orgaos_partidarios_2018",
             "2018-candidatos": "de_contas_eleitorais_candidatos_2018",
+            "2020-orgaos": "de_contas_eleitorais_orgaos_partidarios_2020",
+            "2020-candidatos": "de_contas_eleitorais_candidatos_2020",
         }
         return f"prestacao_contas/prestacao_{urls[year]}.zip"
 
