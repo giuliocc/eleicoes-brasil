@@ -84,10 +84,7 @@ def last_elections_year(reference=None):
     if reference.year % 2 == 1:  # Não é ano de eleição retorna o anterior
         return reference.year - 1
 
-    if reference >= datetime.date(reference.year, 12, 1):  # Passou a eleição desse ano
-        return reference.year
-
-    return reference.year - 2
+    return reference.year
 
 
 def obfuscate_cpf(cpf):
@@ -360,6 +357,8 @@ class CandidaturaExtractor(Extractor):
             header_year = "2014"
         elif 2016 <= year <= 2020:
             header_year = "2020"
+        elif year == 2022:
+            header_year = "2022"
         else:
             raise ValueError(f"Unrecognized year ({year}, {uf})")
         return {
