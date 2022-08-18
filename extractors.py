@@ -480,7 +480,7 @@ class BemDeclaradoExtractor(Extractor):
         uf = self.extract_state_from_filename(internal_filename)
         if 2006 <= year <= 2012:
             header_year = "2006"
-        elif 2014 <= year <= 2020:
+        elif 2014 <= year <= 2022:
             header_year = "2014"
         else:
             raise ValueError("Unrecognized year")
