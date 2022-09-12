@@ -35,7 +35,6 @@ def merge_zipfiles(filename1, filename2):
             zip1.writestr(filename, zip2.open(filename).read())
 
 
-
 class FixQuotes(io.TextIOWrapper):
     def readline(self, *args, **kwargs):
         data = super().readline(*args, **kwargs)
@@ -46,3 +45,7 @@ class FixQuotes(io.TextIOWrapper):
         if '";"' in data and not data.startswith('"') and not data.endswith('"'):
             data = '"' + data[:- len(newline)] + '"' + newline
         return data
+
+
+def is_municipal_elections_year(year):
+    return True if year % 4 == 0 else False
