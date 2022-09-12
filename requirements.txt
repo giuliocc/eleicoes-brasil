@@ -1,8 +1,12 @@
+aioboto3
+aiofiles
 cached-property
 click
 Distance
 https://github.com/turicas/rows/archive/develop.zip
 lxml
+more-itertools
+Pillow
 rarfile
 requests
 requests-cache
