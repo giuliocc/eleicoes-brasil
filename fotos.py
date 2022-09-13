@@ -1,3 +1,4 @@
+import asyncio
 from urllib.parse import urljoin
 from pathlib import Path
 from zipfile import ZipFile
@@ -7,6 +8,11 @@ from tqdm import tqdm
 
 from utils import is_municipal_elections_year
 
+from fotos_upload import main as upload
+from fotos_sync import main as sync
+
+
+loop = asyncio.get_event_loop()
 
 data_path = Path("fotos")
 download_path = data_path / "download"
@@ -55,14 +61,16 @@ def main():
 def download_photos(year):
     base_url = f"https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes{year}/fotos/"
     download_filenames = get_download_filenames(year)
+    photo_path = output_path / str(year)
 
     for download_filename in download_filenames:
         filepath = download_path / str(year) / download_filename
         url = urljoin(base_url, download_filename)
         download(url, filepath)
-
-        photo_path = output_path / str(year)
         extract(filepath, photo_path)
+
+        loop.run_until_complete(upload(photo_path))  # Quando divide por estados ainda tá listando o ano inteiro
+        sync(photo_path)
 
 
 def get_download_filenames(year):
@@ -115,6 +123,8 @@ def extract(source_path, extract_path):
 
         with open(new_filename, mode="wb") as fobj:
             fobj.write(zfobj.read())
+
+    source_path.unlink()
 
 
 if __name__ == "__main__":

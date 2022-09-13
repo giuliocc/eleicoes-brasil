@@ -10,16 +10,11 @@ from PIL import Image
 from tqdm import tqdm
 
 
-data_path = Path("fotos")
-download_path = data_path / "download"
-output_path = data_path / "output"
-for path in (data_path, download_path, output_path):
-    if not path.exists():
-        path.mkdir(parents=True)
+output_path = Path('fotos/output')
 
 
-async def main():
-    files = [convert_to_jpg(f) for f in output_path.glob("**/*") if f.is_file()]
+async def main(upload_folder=output_path):
+    files = [convert_to_jpg(f) for f in upload_folder.glob("**/*") if f.is_file()]
     await chunked_upload(files)
 
 
