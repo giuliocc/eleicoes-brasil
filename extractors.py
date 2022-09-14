@@ -357,9 +357,9 @@ class CandidaturaExtractor(Extractor):
             header_year = "2012"
         elif year == 2014:
             header_year = "2014"
-        elif 2016 <= year <= 2020:
-            header_year = "2020"
-        elif year == 2022:
+        elif 2016 <= year <= 2018:
+            header_year = "2018"
+        elif 2020 <= year <= 2022:
             header_year = "2022"
         else:
             raise ValueError(f"Unrecognized year ({year}, {uf})")
